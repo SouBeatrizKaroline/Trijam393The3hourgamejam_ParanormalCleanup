@@ -1,0 +1,20 @@
+# Image generation prompts
+
+Mode: built-in image_gen tool. Generated promotional page artwork, separate from the actual gameplay screenshots.
+
+## banner
+
+Use case: ads-marketing. Asset type: itch.io page header banner for an existing indie arcade game. Produce ONE wide horizontal banner, approximately 3:1, 1536x512. Art direction: simple flat illustrated spooky Victorian wallpaper, dark navy #10161b and muted forest green #263a36, pale cream #ebe9d6 and pale lime #c3f6a0 highlights. Match a modest 2D canvas game, NOT a realistic or 3D game. Main left-center typography large bold heavy sans-serif, exactly two lines: 'PARANORMAL' then 'CLEANUP'. Smaller exact tagline beneath: 'The walls have eyes. You have a spray bottle.' On right, one large stylized almond-shaped wall eye, amber iris, dark vertical pupil, and a mint-green generic cleaning spray bottle. Elegant sparse composition with generous safe margins, subtle wallpaper vertical stripes, quiet eerie charm. All English text perfectly legible and spelled verbatim. No people, no game HUD, no buttons, no additional text, no logos, no watermarks. Entire banner finished edge-to-edge opaque image.
+
+## background
+
+Use case: stylized-concept. Asset type: itch.io full-page background for Paranormal Cleanup. Produce ONE landscape 1920x1080 wallpaper. Restrained flat 2D illustration matching a minimalist haunted-room canvas arcade. Deep navy #10161b blending into very dark forest green #182a24. Sparse subtle Victorian wallpaper vertical stripes and tiny faded diamond/leaf motifs. A few discreet stylized sleepy wall-eye outlines near the outer left and right edges only, dark muted olive on dark navy, extremely low contrast. Broad central region mostly dark and calm to sit behind a game page. Atmospheric softly vignetted outer edges, gentle fine-grain surface texture. Background designed for readability with cream text over it. No text whatsoever, no characters, no spray bottle, no UI, no frames, no bright highlights, no watermarks. This is a decorative background, not a screenshot.
+
+## embed-bg
+
+Use case: stylized-concept. Asset type: itch.io HTML5 game launch background for Paranormal Cleanup. Produce ONE landscape illustration 1280x800, aspect ratio 8:5. A simple flat 2D haunted room, restrained graphic shapes matching a canvas arcade game, dark navy #10161b, deep desaturated forest green #263a36, subtle olive wallpaper stripes. Crooked small portrait frame on left, moonlit cross-pane window on right, wood floor at bottom. Two or three stylized almond wall eyes with pale cream sclera and amber iris placed toward outer sides. Mint-green cleaning spray bottle partly visible bottom right with a blank cream label, no lettering. Leave the central 40% dim and visually quiet for itch.io's own Launch game button. Atmospheric vignette, understated spooky charm, readable silhouette shapes. No typography at all, no title, no buttons, no HUD, no characters, no logos, no watermarks. Make it promotional background art closely consistent with a modest 2D browser game, not photorealistic or 3D.
+
+## embed-bg-title
+
+Use case: precise-object-edit / text addition. Edit this existing illustrated haunted-room itch.io launch background. Preserve the composition, colors, window, portrait, spray bottle, wall eyes and dark atmosphere. Add a large beautifully typeset game title in the upper-center quiet wall region, in two lines exactly: 'PARANORMAL' then 'CLEANUP'. Bold heavy clean condensed sans-serif typography, PARANORMAL pale cream #ebe9d6, CLEANUP pale lime #c3f6a0, perfectly spelled, clear, comfortably contained in the center with generous padding. Place title between 20% and 42% of image height, not covering peripheral objects. Keep the middle-lower center (around 55%-65% height) empty for itch.io's launch button. Do not add any buttons, slogans, small text, logos, borders or watermarks. Maintain original landscape 8:5 aspect ratio. All letters must be crisp and legible. This is an alternate titled Embed BG for the game Paranormal Cleanup.
+
