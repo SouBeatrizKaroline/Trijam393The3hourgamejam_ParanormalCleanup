@@ -20,7 +20,7 @@ Welcome to **Midnight Maintenance Co.** Your assignment sounds simple: clean the
 
 ## How to play
 
-1. Select **Clock In**.
+1. Select **Clock In**. The game requests fullscreen when your browser allows it.
 2. Aim at an eye and **hold to spray while it is open**. Closed eyelids block your spray.
 3. Press **R** or select **Refill** when your bottle runs low. Refilling takes **1.3 seconds**.
 4. Clean eyes before their stares fill the **House Anger** meter.
@@ -45,7 +45,8 @@ Each cleaned eye starts at **100 points**. Consecutive eye cleanups build a stre
 - Original illustrated room, crooked portrait, moonlit window, and animated wall eyes.
 - Three escalating parts of your shift: **The Foyer → The Parlor → The Attic**.
 - Spray particles, floating score popups, and synthesized sound effects.
-- Full-viewport layout with a dedicated **Fullscreen** button.
+- Full-viewport layout, automatic fullscreen request on Clock In, and a dedicated **Fullscreen** toggle.
+- Controls and target positions adapt to portrait, landscape, small embeds, and large displays.
 - Mouse, keyboard, and touch controls.
 - Automatic pause when the window loses focus.
 - Local personal best, saved in your browser when storage is available.
@@ -69,11 +70,17 @@ An upload-ready ZIP is supplied alongside the repository folder. It contains `in
 
 1. Create an itch.io project and choose **HTML** as its kind of project.
 2. Upload the ZIP and select **This file will be played in the browser**.
-3. Enable itch.io’s fullscreen option. The game also includes its own Fullscreen button.
-4. Use a **1280 × 800** embed, or the responsive sizing options available on your project page.
+3. Select **Click to launch in fullscreen** in itch.io’s embed options.
+4. If you prefer **Embed in page**, enable the fullscreen button and use **1280 × 800** as a starting size. The game also adapts to smaller embeds.
 5. Include the controls, credits, and actual development time in the submission description.
 
 Fullscreen availability depends on the browser and the embedding page’s permissions. Mobile browsers that do not support the Fullscreen API still receive a full-viewport layout.
+
+## Quality checks
+
+The responsive revision was checked in desktop Edge with automated viewport tests from **240 × 240** through **3840 × 2160**, including portrait and landscape mobile layouts. Fullscreen entry/exit, blocked fullscreen fallback, target placement, keyboard and pointer controls, touch cancellation, refilling, scoring, pause, victory, defeat, and retry were verified. Spray consumption was compared at 15, 30, 60, and 120 frames per second.
+
+See [QA notes](QA.md) for the tested sizes and browser limitations.
 
 ## Project layout
 

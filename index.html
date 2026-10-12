@@ -10,14 +10,14 @@
 </head>
 <body>
   <main id="game">
-    <canvas id="scene" aria-label="Haunted room. Aim at open eyes and hold to spray."></canvas>
+    <canvas id="scene" tabindex="0" aria-label="Haunted room. Aim at open eyes and hold to spray."></canvas>
     <header class="hud">
-      <a class="brand" href="#" aria-label="Paranormal Cleanup">PC<span>PARANORMAL<br>CLEANUP</span></a>
+      <div class="brand" aria-label="Paranormal Cleanup">PC<span>PARANORMAL<br>CLEANUP</span></div>
       <div class="stats"><div><small>SCORE</small><strong id="score">00000</strong></div><div><small>SHIFT LEFT</small><strong id="time">90s</strong></div><div><small>BEST</small><strong id="best">00000</strong></div></div>
       <div class="tools"><button id="sound" aria-label="Toggle sound">Sound: ON</button><button id="pause">Pause</button><button id="fullscreen">Fullscreen ⛶</button></div>
     </header>
     <aside class="status"><span id="room">01 / THE FOYER</span><span id="combo">WAIT FOR THE BLINK</span></aside>
-    <footer class="equipment"><div><small>ECTOPLASM REMOVER</small><div class="tank"><i id="tank"></i></div><span id="tankLabel">HOLD TO SPRAY · R TO REFILL</span></div><div class="nerve"><small>HOUSE ANGER</small><div class="tank danger"><i id="anger"></i></div><span>DON'T LET THEM STARE</span></div></footer>
+    <footer class="equipment"><div><small>ECTOPLASM REMOVER</small><div class="tank"><i id="tank"></i></div><span id="tankLabel">HOLD TO SPRAY · R TO REFILL</span></div><button id="refill" class="refill">REFILL <kbd>R</kbd></button><div class="nerve"><small>HOUSE ANGER</small><div class="tank danger"><i id="anger"></i></div><span>DON'T LET THEM STARE</span></div></footer>
     <section class="overlay" id="overlay">
       <div class="menu">
         <p class="eyebrow">MIDNIGHT MAINTENANCE CO. / EST. 1893</p>
@@ -28,7 +28,7 @@
         <p class="fine">TRIJAM #393 · THE WALLS HAVE EYES · HEADPHONES RECOMMENDED</p>
       </div>
     </section>
-    <button id="refill" class="refill">REFILL <kbd>R</kbd></button>
+
     <div id="toast" role="status" aria-live="polite"></div>
   </main>
   <script src="game.js"></script>
