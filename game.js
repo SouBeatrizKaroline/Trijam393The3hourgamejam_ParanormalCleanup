@@ -38,6 +38,15 @@
     finally{fullscreenPending=false;resize();}
   }
   function beginShift(){start();void enterFullscreen();}
+  function fitMenu(){
+    const overlay=$('overlay'),menu=overlay.querySelector('.menu');
+    if(!menu||overlay.classList.contains('hidden'))return;
+    const styles=getComputedStyle(overlay);
+    const availableWidth=Math.max(1,overlay.clientWidth-parseFloat(styles.paddingLeft)-parseFloat(styles.paddingRight));
+    const availableHeight=Math.max(1,overlay.clientHeight-parseFloat(styles.paddingTop)-parseFloat(styles.paddingBottom));
+    const scale=Math.min(1,availableWidth/Math.max(1,menu.scrollWidth),availableHeight/Math.max(1,menu.offsetHeight));
+    menu.style.setProperty('--menu-scale',String(scale));
+  }
   const rooms=['THE FOYER','THE PARLOR','THE ATTIC'];
   const random=(a,b)=>a+Math.random()*(b-a), clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   function resize(){
@@ -54,6 +63,7 @@
     playArea.top=clamp(playArea.top,0,height-2);playArea.bottom=clamp(playArea.bottom,playArea.top+1,height);
     aim.x=clamp(aim.x,playArea.left,playArea.right);aim.y=clamp(aim.y,playArea.top,playArea.bottom);
     layoutEyes();
+    fitMenu();
   }
   addEventListener('resize',resize);
   if(window.visualViewport)window.visualViewport.addEventListener('resize',resize);
@@ -71,7 +81,7 @@
   function start(){state='playing';eyes=[];particles=[];labels=[];score=cleaned=combo=maxCombo=anger=refilling=shot=0;tank=100;remaining=90;spawn=.7;releaseInput();$('toast').textContent='';resize();for(let i=0;i<3;i++)addEye();$('overlay').classList.add('hidden');$('pause').textContent='Pause';sound(400,.15);hud();focusScene();}
   function refill(){if(state!=='playing'||refilling>0||tank>=99)return;refilling=1.3;aim.held=false;sound(180,.2,'triangle');}
   function pause(){if(state!=='playing'&&state!=='paused')return;state=state==='playing'?'paused':'playing';releaseInput();focusScene();$('pause').textContent=state==='paused'?'Resume':'Pause';$('toast').textContent=state==='paused'?'SHIFT PAUSED · PRESS P TO RESUME':'';}
-  function finish(win){state='over';releaseInput();$('toast').textContent='';const newBest=score>best;best=Math.max(best,score);try{localStorage.setItem('paranormal-cleanup-best',String(best));}catch{}hud();sound(win?650:100,.5,'triangle');$('overlay').innerHTML=`<div class="menu"><p class="eyebrow">MIDNIGHT MAINTENANCE CO. / SHIFT REPORT</p><h1>${win?'SHIFT':'HOUSE'}<br><em>${win?'COMPLETE':'AWAKENED'}</em></h1><p class="tagline">${win?'Another night. Another suspiciously clean house.':'You let the walls stare a little too long.'}</p><div class="result-grid"><div><small>FINAL SCORE</small><strong class="result">${score.toLocaleString()}</strong></div><div><small>EYES CLEANED</small><strong class="result">${cleaned}</strong></div><div><small>BEST STREAK</small><strong class="result">×${maxCombo}</strong></div></div><p class="result">${newBest?'✦ New personal best! ':''}${win?'Your shift is over. The infestation will return.':'Catch open eyes quickly to keep the house calm.'}</p><button class="primary" id="again">CLOCK IN AGAIN <span>→</span></button><p class="fine">TRIJAM #393 · THE WALLS HAVE EYES</p></div>`;$('overlay').classList.remove('hidden');$('again').onclick=beginShift;$('again').focus({preventScroll:true});}
+  function finish(win){state='over';releaseInput();$('toast').textContent='';const newBest=score>best;best=Math.max(best,score);try{localStorage.setItem('paranormal-cleanup-best',String(best));}catch{}hud();sound(win?650:100,.5,'triangle');$('overlay').innerHTML=`<div class="menu"><p class="eyebrow">MIDNIGHT MAINTENANCE CO. / SHIFT REPORT</p><h1>${win?'SHIFT':'HOUSE'}<br><em>${win?'COMPLETE':'AWAKENED'}</em></h1><p class="tagline">${win?'Another night. Another suspiciously clean house.':'You let the walls stare a little too long.'}</p><div class="result-grid"><div><small>FINAL SCORE</small><strong class="result">${score.toLocaleString()}</strong></div><div><small>EYES CLEANED</small><strong class="result">${cleaned}</strong></div><div><small>BEST STREAK</small><strong class="result">×${maxCombo}</strong></div></div><p class="result">${newBest?'✦ New personal best! ':''}${win?'Your shift is over. The infestation will return.':'Catch open eyes quickly to keep the house calm.'}</p><button class="primary" id="again">CLOCK IN AGAIN <span>→</span></button><p class="fine">TRIJAM #393 · THE WALLS HAVE EYES</p></div>`;$('overlay').classList.remove('hidden');$('again').onclick=beginShift;fitMenu();$('again').focus({preventScroll:true});}
   function spray(){tank=Math.max(0,tank-1.25);sound(random(600,1000),.035,'sawtooth',.009);let hit=false;for(const e of eyes){if(Math.hypot(e.x-aim.x,e.y-aim.y)<e.r+10&&openness(e)>.55){hit=true;e.hp-=.34;for(let i=0;i<8;i++)particles.push({x:e.x,y:e.y,vx:random(-100,100),vy:random(-100,100),life:random(.2,.6),color:'#c4f7a2'});if(e.hp<=0){combo++;maxCombo=Math.max(combo,maxCombo);const points=100+Math.min(combo-1,10)*25;score+=points;cleaned++;anger=Math.max(0,anger-6);labels.push({x:e.x,y:e.y,text:'+'+points,life:1});sound(400+combo*25,.12,'triangle');}}}eyes=eyes.filter(e=>e.hp>0);if(!hit)combo=0;for(let i=0;i<5;i++)particles.push({x:aim.x+random(-20,20),y:aim.y+random(-20,20),vx:random(-35,35),vy:random(-60,20),life:.3,color:'#9ee0d3'});}
   function update(dt){clock+=dt;if(state!=='playing')return;remaining=Math.max(0,remaining-dt);const speed=360*dt;if(keys.has('ArrowLeft')||keys.has('a'))aim.x-=speed;if(keys.has('ArrowRight')||keys.has('d'))aim.x+=speed;if(keys.has('ArrowUp')||keys.has('w'))aim.y-=speed;if(keys.has('ArrowDown')||keys.has('s'))aim.y+=speed;aim.x=clamp(aim.x,playArea.left,playArea.right);aim.y=clamp(aim.y,playArea.top,playArea.bottom);eyes.forEach(e=>e.age+=dt);spawn-=dt;const level=Math.floor((90-remaining)/30);if(spawn<=0){if(eyes.length<7+level*2)addEye();spawn=Math.max(.8,2.2-level*.45);}anger=clamp(anger+dt*(eyes.reduce((n,e)=>n+(openness(e)>.55?1:0),0)*.9+.08),0,100);if(refilling>0){refilling-=dt;if(refilling<=0){refilling=0;tank=100;sound(550,.1);}}else if((aim.held||keys.has(' '))&&tank>0){shot-=dt;while(shot<=0&&tank>0){spray();shot+=.07;}}else shot=0;particles.forEach(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=dt;});particles=particles.filter(p=>p.life>0);labels.forEach(p=>{p.y-=25*dt;p.life-=dt;});labels=labels.filter(p=>p.life>0);hud();if(anger>=100)finish(false);else if(remaining<=0)finish(true);}
   function line(x1,y1,x2,y2,color,widthLine=1){ctx.strokeStyle=color;ctx.lineWidth=widthLine;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();}

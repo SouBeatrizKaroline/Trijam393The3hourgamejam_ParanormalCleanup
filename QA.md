@@ -6,7 +6,7 @@
 - Measured the actual game container instead of assuming the browser window size.
 - Reserved the real header and footer areas when spawning and moving targets.
 - Repositioned targets after resize and rotation, with fewer targets when space is limited.
-- Kept menu and results screens scrollable on small displays.
+- Fitted menu and results screens to the available viewport with no scrolling. Short screens use compact spacing and scale the remaining content to fit.
 - Made fullscreen accessible from the title screen and requested it on Clock In.
 - Preserved playability when fullscreen is unavailable or blocked by an embed.
 - Added browser viewport resize handling and supported display safe areas.
@@ -41,5 +41,7 @@ Across these sizes: no document horizontal overflow, clipped action buttons, or 
 Additional checks passed for fullscreen entry/exit, blocked fullscreen fallback, live portrait-landscape resize, pause timer, open-eye damage, closed-eye immunity, scoring, refill, pointer release/cancellation, second-pointer isolation, keyboard controls, focus-loss pause, victory, defeat, and retry. Spray consumption remained within one spray pulse across 15/30/60/120 FPS simulations. The shipping build loaded without JavaScript errors.
 
 ## Test boundaries
+
+The single-screen revision additionally passed **36 state/viewport combinations**: start, victory, and defeat at all 12 sizes above. The complete menu, headings, instructions, result statistics, and action buttons remained within the visible overlay. Mouse-wheel attempts did not move the game or overlay, and portrait-to-landscape resizing preserved the fit. Gameplay and fullscreen regression checks also passed.
 
 Phone layouts and touch events were emulated; this is not a physical-device certification. Safari/iOS, Firefox, and the final live itch.io embed were not tested. Fullscreen availability depends on browser support and iframe permissions. For itch.io, select **Click to launch in fullscreen**, upload the updated ZIP, and preview the published embed.

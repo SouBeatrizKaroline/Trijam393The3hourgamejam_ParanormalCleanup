@@ -47,6 +47,7 @@ Each cleaned eye starts at **100 points**. Consecutive eye cleanups build a stre
 - Spray particles, floating score popups, and synthesized sound effects.
 - Full-viewport layout, automatic fullscreen request on Clock In, and a dedicated **Fullscreen** toggle.
 - Controls and target positions adapt to portrait, landscape, small embeds, and large displays.
+- Start, gameplay, and result screens fit one viewport with no internal scrolling.
 - Mouse, keyboard, and touch controls.
 - Automatic pause when the window loses focus.
 - Local personal best, saved in your browser when storage is available.

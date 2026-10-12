@@ -23,3 +23,26 @@ h1{font-size:clamp(20px,8vw,75px);line-height:.98;letter-spacing:-.04em}.spark{f
 @media(max-width:800px){.brand span{display:none}.hud{gap:8px;padding:max(8px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) 8px max(12px,env(safe-area-inset-left))}.tools button{padding:8px;font-size:10px}.equipment{gap:12px;padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}.status{left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right))}}
 @media(max-width:540px){.hud{grid-template-columns:auto 1fr}.tools{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);margin:0}.tools button{min-width:0}.stats{justify-content:space-between;padding-left:10px;gap:10px}.stats strong{font-size:19px}.equipment{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px}.equipment small{font-size:8px;letter-spacing:.3px}.equipment span{font-size:8px;line-height:1.4}.refill{padding:8px;font-size:10px}kbd{display:none}.eyebrow{font-size:8px}.tagline{font-size:15px}.instructions>div{font-size:11px}.fine{font-size:7px}}
 @media(max-height:500px){.hud{padding-top:max(4px,env(safe-area-inset-top));padding-bottom:4px}.tools button{min-height:32px;padding:5px 8px}.brand{font-size:24px}.stats strong{font-size:18px}.status{padding:4px 0;font-size:9px}.equipment{padding-top:5px;padding-bottom:max(5px,env(safe-area-inset-bottom))}.equipment span{display:none}.refill{min-height:32px}.tank{margin:5px 0}.overlay{padding-top:12px;padding-bottom:12px}h1{font-size:clamp(20px,6vw,44px);margin:12px 0}.tagline{font-size:13px;margin:8px 0}.instructions{margin-top:12px;padding-top:6px}.instructions>div{padding:4px 0}.primary{margin-top:12px;padding:12px 18px}}
+/* Keep every game state in a single viewport, including start and results. */
+html,body,#game{overscroll-behavior:none}
+.overlay{overflow:clip;touch-action:manipulation}
+.menu{position:absolute;left:50%;top:50%;width:calc(100% - 48px);margin:0;transform:translate(-50%,-50%) scale(var(--menu-scale,1));transform-origin:center;display:flow-root}
+@media(max-height:600px){
+  .overlay{padding-top:12px;padding-bottom:12px}
+  h1{font-size:clamp(20px,6vw,44px);margin:10px 0}
+  .tagline{font-size:13px;margin:8px 0;line-height:1.3}
+  .instructions{margin-top:10px;padding-top:5px}
+  .instructions>div{padding:3px 0;font-size:11px;line-height:1.3}
+  .primary{margin-top:10px;padding:10px 16px;min-height:40px}
+  .fine{margin:8px 0;font-size:7px}
+  .result-grid{margin:10px 0}
+  .result{font-size:12px;line-height:1.3;margin:8px 0}
+}
+@media(max-height:400px){
+  .eyebrow,.fine,.tagline{display:none}
+  h1{font-size:clamp(20px,4vw,32px);margin:0 0 8px}
+  .instructions{margin-top:6px;padding-top:4px}
+  .instructions>div{font-size:10px;padding:2px 0;gap:8px}
+  .primary{margin-top:8px;min-height:36px;padding:7px 12px}
+  .result-grid strong{font-size:20px}
+}
